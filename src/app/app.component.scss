@@ -246,3 +246,69 @@ body {
 .btn-primary:hover {
   background-color: #0056b3;
 }
+
+
+.navbar {
+  background-color: #007bff; /* Blue background */
+  padding: 10px 0; /* Add padding to the navbar */
+}
+
+.navbar-brand {
+  color: #fff; /* White text color */
+  font-size: 1.5rem; /* Larger font size */
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff; /* White text color */
+  margin-right: 10px; /* Add margin between buttons */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-link:hover {
+  color: #e9ecef; /* Lighter color on hover */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px; /* Adjust image size */
+  height: 40px;
+  border-radius: 50%; /* Round image */
+  margin-right: 10px; /* Add margin */
+}
+
+.user-name {
+  font-weight: bold; /* Bold user name */
+}
+
+.create-post-btn {
+  background-color: #28a745; /* Green button color */
+}
+
+.create-post-btn:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.login-btn {
+  background-color: #6c757d; /* Gray button color */
+}
+
+.login-btn:hover {
+  background-color: #5a6268; /* Darker gray on hover */
+}
+
+.logout-btn {
+  background-color: #dc3545; /* Red button color */
+}
+
+.logout-btn:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
