@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../common.service'; // Replace with your actual service path
+import { CommonService } from '../common.service';
 import { Observable } from 'rxjs';
-import { Post } from '../post'; // Define your Post interface or class
+import { Post } from '../post'; 
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +13,34 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   posts$!: Observable<Post[]>;
   posts: any;
+  newComment: string = '';
 
-  newComment: string = ''; // Variable to hold new comment input
-
-  constructor(private postService: CommonService, private router: Router) { }
+  constructor(
+    private postService: CommonService,
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.posts$ = this.postService.getPosts();
     this.posts$.subscribe(value => {
       this.posts = value;
+      this.sanitizePostImages();
     });
+  }
+
+  sanitizePostImages() {
+    this.posts.forEach((post: any) => {
+      post.user = post.user || {};
+      post.user.image = this.sanitizeUrl(post.user.profilePic || 'assets/default-user-image.png');
+      post.comments.forEach((comment: any) => {
+        comment.user.image = this.sanitizeUrl(comment.user?.profilePic || 'assets/default-user-image.png');
+      });
+    });
+  }
+
+  sanitizeUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   toggleComments(post: any) {
@@ -29,32 +48,15 @@ export class DashboardComponent implements OnInit {
   }
 
   addComment(post: any) {
-    // Assuming you have a service method to add comments
-    // You can modify this logic based on your actual implementation
     if (this.newComment.trim() !== '') {
       post.comments.push({
-        user: 'USER_ID', // Replace with actual user ID
+        user: 'USER_ID',
         comment: this.newComment,
         createdAt: new Date().toISOString()
       });
-      this.newComment = ''; // Clear the input after adding comment
+      this.newComment = '';
     }
   }
-
-  // toggleLike(post: any) {
-  //   const liked = post.liked; // Assume this flag indicates whether the post is liked by the user
-  //   if (liked) {
-  //     this.postService.unlikePost(post._id).subscribe(() => {
-  //       post.likes--;
-  //       post.liked = false;
-  //     });
-  //   } else {
-  //     this.postService.likePost(post._id).subscribe(() => {
-  //       post.likes++;
-  //       post.liked = true;
-  //     });
-  //   }
-  // }
 
   toggleLike(post: any) {
     const liked = post.liked;
@@ -62,13 +64,11 @@ export class DashboardComponent implements OnInit {
       this.postService.unlikePost(post._id).subscribe(() => {
         post.likes--;
         post.liked = false;
-        post.likeColor = 'black'; // Assuming 'likeColor' controls button color
       });
     } else {
       this.postService.likePost(post._id).subscribe(() => {
         post.likes++;
         post.liked = true;
-        post.likeColor = 'rgb(8, 102, 255)'; // Change to liked color
       });
     }
   }
@@ -76,4 +76,20 @@ export class DashboardComponent implements OnInit {
   goToPostDetails(postId: string) {
     this.router.navigate(['/post', postId]);
   }
+
+  // swapImage(post: any, image: string): void {
+  //   const mainImageIndex = post.images.indexOf(post.mainImage);
+  //   const newMainImageIndex = post.images.indexOf(image);
+
+  //   post.mainImage = image;
+  //   post.images[newMainImageIndex] = post.images[mainImageIndex];
+  //   post.images[mainImageIndex] = image;
+  // }
+  swapImage(post: any): void {
+    // Swap mainImage and sideImage
+    const temp = post.mainImage;
+    post.mainImage = post.sideImage;
+    post.sideImage = temp;
+  }
+  
 }
