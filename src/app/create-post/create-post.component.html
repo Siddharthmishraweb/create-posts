@@ -1,0 +1,22 @@
+<div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Post</h5>
+        <button class="btn-close" (click)="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="createPost()">
+          <div class="mb-3">
+            <label for="postContent" class="form-label">Content</label>
+            <textarea class="form-control" id="postContent" [(ngModel)]="postContent" name="postContent" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="postImages" class="form-label">Images (comma-separated URLs)</label>
+            <input type="text" class="form-control" id="postImages" [(ngModel)]="postImages" name="postImages">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

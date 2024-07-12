@@ -41,13 +41,15 @@ import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-s
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
