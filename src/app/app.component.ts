@@ -263,7 +263,6 @@ import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { CommonService } from './common.service';
-import { MuiModule } from '@mui/angular';
 
 
 declare const bootstrap: any; // Declare bootstrap to access Bootstrap modal API
