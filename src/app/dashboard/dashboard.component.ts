@@ -34,9 +34,9 @@ export class DashboardComponent implements OnInit {
       console.warn("post::: ", post);
       post.user = post.user || {};
       // post.user.image = this.sanitizeUrl(post.user.profilePic || 'assets/default-user-image.png');
-      post.user.pimage = post.user.profilePic;
-      post.userImages = this.sanitizer.bypassSecurityTrustUrl(post.user.profilePic);
-      console.log("post.user.image:::   ", post.user.image)
+      // post.user.pimage = post.user.profilePic;
+      post.userImages = this.sanitizer.bypassSecurityTrustUrl(post?.user?.profilePic);
+      // console.log("post.user.image:::   ", post.user.image)
       post.comments.forEach((comment: any) => {
         comment.user.image = this.sanitizeUrl(comment.user?.profilePic || 'assets/default-user-image.png');
       });
