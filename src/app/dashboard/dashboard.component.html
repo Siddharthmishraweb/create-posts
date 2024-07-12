@@ -2,7 +2,7 @@
   <div class="card-container">
     <div *ngFor="let post of posts" class="card">
       <div class="user">
-        <img [src]="post.user?.image || 'assets/default-user-image.png'" alt="User Image" class="user-image">
+        <img [src]="post.userImages || 'default-user-image.png'" alt="User Image">
         <span>{{ post.user?.name || 'Anonymous' }}</span>
       </div>
       <div class="content" (click)="goToPostDetails(post._id)">
