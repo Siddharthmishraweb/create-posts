@@ -80,6 +80,7 @@ export class DashboardComponent implements OnInit {
   goToPostDetails(postId: string) {
     this.router.navigate(['/post', postId]);
   }
+  
 
   // swapImage(post: any, image: string): void {
   //   const mainImageIndex = post.images.indexOf(post.mainImage);

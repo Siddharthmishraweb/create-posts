@@ -45,4 +45,8 @@ export class CommonService {
   unlikePost(postId: string): Observable<void> {
     return this.http.patch<void>(`${this.apiUrl}/${postId}/unlike`, {});
   }
+
+  getPostById(id: string): Observable<Post> {
+    return this.http.get<Post>(`${this.apiUrl}/${id}`);
+  }
 }
