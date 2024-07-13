@@ -14,13 +14,13 @@
     </div>
   </nav>
 </div> -->
-
 <div class="container-fluid p-0">
   <nav class="navbar">
     <div class="container">
       <a class="navbar-brand" href="#">Your Blog</a>
       <div class="navbar-right">
-        <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onLoginButtonClick()">Login</button>
+        <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onLoginButtonClick()">Login with Google</button>
+        <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onFacebookLoginClick()">Login with Facebook</button>
         <div *ngIf="loggedIn" class="user-info">
           <img [src]="sanitizedPhotoUrl" alt="User Image" class="user-image">
           <span class="nav-link user-name">{{ user?.name }}</span>
@@ -32,7 +32,8 @@
   </nav>
 </div>
 
-
 <app-create-post #createPostComponent (postCreated)="onPostCreated()"></app-create-post>
 
 <router-outlet></router-outlet>
+
+

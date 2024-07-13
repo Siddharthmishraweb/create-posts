@@ -312,3 +312,13 @@ body {
 .logout-btn:hover {
   background-color: #c82333; /* Darker red on hover */
 }
+
+.btn.login-btn {
+  background-color: white;
+  color: blue;
+  cursor: pointer;
+}
+
+.btn.logout-btn, .btn.create-post-btn {
+  cursor: pointer;
+}
