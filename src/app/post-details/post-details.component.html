@@ -1,8 +1,8 @@
  <div class="post-details">
     <div class="header">
-      <img [src]=" 'post?.user.profilePic' || 'assets/default-user-image.png'" alt="User Image" class="user-image">
+      <img [src]=" 'Object.values(post?.user)[3]'  || 'assets/default-user-image.png'" alt="User Image" class="user-image">
       <div class="user-info">
-        <h2>{{'post?.user?.name' || 'Anonymous' }}</h2>
+        <h2>{{post?.user?.name || 'Anonymous' }}</h2>
         <p>{{ post?.createdAt }}</p>
       </div>
     </div>
