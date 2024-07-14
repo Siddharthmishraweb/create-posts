@@ -91,6 +91,7 @@ export class PostDetailsComponent implements OnInit {
         post.createdAt = new Date(post.createdAt).toLocaleString('en-IN', {
           timeZone: 'Asia/Kolkata'
         });
+        console.log("post::: ", post);
         this.post = post;
       });
     }
@@ -102,10 +103,10 @@ export class PostDetailsComponent implements OnInit {
 
   getPostUserPic(post: Post): string {
     const postUser = post.user;
-    // const { profilePic } = postUser;
+    const { profilePic } = postUser;
     const postUserImage = Object.values(postUser)[3];
     console.log("postUser:: ", Object.values(postUser)[3]);
-    return postUserImage || 'assets/default-user-image.png';
+    return profilePic || 'assets/default-user-image.png';
   }
 
   formatLocalTime(dateStr: string): string {

@@ -1,6 +1,6 @@
  <div class="post-details">
     <div class="header">
-      <img [src]=" 'Object.values(post?.user)[3]'  || 'assets/default-user-image.png'" alt="User Image" class="user-image">
+      <img [src]=" post?.user?.profilePic  || 'assets/default-user-image.png'" alt="User Image" class="user-image">
       <div class="user-info">
         <h2>{{post?.user?.name || 'Anonymous' }}</h2>
         <p>{{ post?.createdAt }}</p>
@@ -10,7 +10,7 @@
     <div class="content">
       <p>{{ post?.content }}</p>
       <div class="image-carousel">
-        <img *ngFor="let image of post?.images" [src]="image" alt="Post Image" class="post-image">
+        <img *ngFor="let a of post?.images" [src]="a" alt="Post Image" class="post-image">
       </div>
     </div>
     
