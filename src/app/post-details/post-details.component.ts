@@ -77,6 +77,7 @@ import { Post } from '../post';
 })
 export class PostDetailsComponent implements OnInit {
   post: Post | undefined;
+  sanitizer: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -92,7 +93,10 @@ export class PostDetailsComponent implements OnInit {
           timeZone: 'Asia/Kolkata'
         });
         console.log("post::: ", post);
+        
         this.post = post;
+        post.postImages = post.images;
+        this.sanitizePostImages(post);
       });
     }
   }
@@ -100,6 +104,17 @@ export class PostDetailsComponent implements OnInit {
   getPostUserName(post: Post): string {
     return post?.user?.name || 'Anonymous';
   }
+
+  getPostImages(post: Post): [string] {
+    return post?.images || 'Anonymous';
+  }
+
+  sanitizePostImages(post: any) {
+    console.warn("this.post====", this.post?.images);
+    post.images = this.sanitizer.bypassSecurityTrustUrl(this.post?.images);
+    this.post = post;
+  }
+
 
   getPostUserPic(post: Post): string {
     const postUser = post.user;

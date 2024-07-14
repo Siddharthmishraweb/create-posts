@@ -10,10 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PostDetailsComponent,
     DashboardComponent,
     LoginModalComponent,
     CreatePostComponent
@@ -21,6 +24,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule ,
     HttpClientModule,
     NgbModule,
     FormsModule,

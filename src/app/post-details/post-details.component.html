@@ -1,4 +1,4 @@
- <div class="post-details">
+ <!-- <div class="post-details">
     <div class="header">
       <img [src]=" post?.user?.profilePic  || 'assets/default-user-image.png'" alt="User Image" class="user-image">
       <div class="user-info">
@@ -10,7 +10,11 @@
     <div class="content">
       <p>{{ post?.content }}</p>
       <div class="image-carousel">
-        <img *ngFor="let a of post?.images" [src]="a" alt="Post Image" class="post-image">
+        <div class="image-carousel" *ngIf="post.images && post.images.length > 0">
+          <div class="image-slide" *ngFor="let image of post.images">
+            <img [src]="image" alt="Post Image" class="post-image">
+          </div>
+        </div>
       </div>
     </div>
     
@@ -23,4 +27,32 @@
     </div>
   </div>
 
+ -->
+
+
+ <div class="post-details">
+  <div class="header" *ngIf="post">
+    <img [src]="post?.user?.profilePic || 'assets/default-user-image.png'" alt="User Image" class="user-image">
+    <div class="user-info">
+      <h2>{{ post?.user?.name || 'Anonymous' }}</h2>
+      <p>{{ post?.createdAt }}</p>
+    </div>
+  </div>
+
+  <div class="content" *ngIf="post">
+    <p>{{ post?.content }}</p>
+    <div class="image-carousel" *ngIf="post.images && post.images.length > 0">
+      <div class="image-slide" *ngFor="let image of post.images">
+        <img [src]="image" alt="Post Image" class="post-image">
+      </div>
+    </div>
+  </div>
+
+  <div class="interactions" *ngIf="post">
+    <div class="likes">
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"></svg>
+      <span>{{ post?.likes }}</span>
+    </div>
+  </div>
+</div>
 

@@ -3,6 +3,7 @@
 export interface Post {
     _id: string;
     images: [string];
+    postImages: [string],
     likes: number;
     user: {
       _id: string;
