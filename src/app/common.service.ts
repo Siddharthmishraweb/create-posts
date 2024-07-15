@@ -2,16 +2,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Post } from './post'; // Define your Post interface or class
+import { Post } from './post'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  // likePost(_id: any) {
-  //   throw new Error('Method not implemented.');
-  // }
-  private apiUrl = 'http://localhost:3000/posts'; // Replace with your API URL
+
+  private apiUrl = 'http://localhost:3000/posts';
   private loginUrl = 'http://localhost:3000/auth/google-login';
 
   constructor(private http: HttpClient) { }
@@ -24,11 +22,6 @@ export class CommonService {
   loginWithGoogle(payload: any): Observable<{ token: { access_token: string }, user: any }>{
     return this.http.post<{ token: { access_token: string }, user: any }>(this.loginUrl, payload);
   }
-
-  
-  // createPost(payload: any): Observable<any> {
-  //   return this.http.post<any>(this.apiUrl, payload);
-  // }
 
   createPost(payload: any): Observable<any> {
     const headers = new HttpHeaders({
