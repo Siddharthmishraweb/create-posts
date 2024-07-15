@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   @ViewChild('createPostComponent') createPostComponent!: CreatePostComponent;
 
   constructor(private authService: SocialAuthService, private sanitizer: DomSanitizer, private commonService: CommonService) { }
-
   ngOnInit(): void {
     this.authService.authState.subscribe((user) => {
       this.user = user;
@@ -29,6 +28,18 @@ export class AppComponent implements OnInit {
         this.onLoginSuccess(this.user);
       }
     });
+
+    // Retrieve user details from localStorage if available
+    const storedUser = typeof localStorage !== 'undefined' ? localStorage.getItem('user') : null;
+    
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      this.user = JSON.parse(storedUser);
+      this.loggedIn = true;
+      if (this.user?.photoUrl) {
+        this.sanitizedPhotoUrl = this.sanitizer.bypassSecurityTrustUrl(user?.profilePic);
+      }
+    }
   }
 
   private onLoginSuccess(user: SocialUser): void {
@@ -44,7 +55,14 @@ export class AppComponent implements OnInit {
     };
 
     this.commonService.loginWithGoogle(loginPayload).subscribe(response => {
-      localStorage.setItem('access_token', response.access_token);
+      console.log("response===== ", response);
+      if (response?.token?.access_token) {
+        localStorage.setItem('access_token', response.token.access_token);
+      }
+    
+      if (response?.user) {
+        localStorage.setItem('user', JSON.stringify(response.user));
+      }
     });
   }
 
@@ -59,6 +77,7 @@ export class AppComponent implements OnInit {
   signOut(): void {
     this.authService.signOut();
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
     this.user = null;
     this.loggedIn = false;
   }
@@ -71,5 +90,9 @@ export class AppComponent implements OnInit {
   checkLoginState(event: any): void {
     console.log('Facebook login event:', event);
     // Handle login state if needed
+  }
+
+  getLoggedInUserDetails(): any {
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 }

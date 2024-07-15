@@ -17,7 +17,7 @@
 <div class="container-fluid p-0">
   <nav class="navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">Your Blog</a>
+      <a class="navbar-brand" href="#">Blogify</a>
       <div class="navbar-right">
         <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onLoginButtonClick()">Login with Google</button>
         <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onFacebookLoginClick()">Login with Facebook</button>
@@ -31,6 +31,7 @@
     </div>
   </nav>
 </div>
+
 
 <app-create-post #createPostComponent (postCreated)="onPostCreated()"></app-create-post>
 

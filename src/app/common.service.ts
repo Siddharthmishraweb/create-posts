@@ -21,8 +21,8 @@ export class CommonService {
     return this.http.get<Post[]>(this.apiUrl);
   }
 
-  loginWithGoogle(payload: any): Observable<{ access_token: string }> {
-    return this.http.post<{ access_token: string }>(this.loginUrl, payload);
+  loginWithGoogle(payload: any): Observable<{ token: { access_token: string }, user: any }>{
+    return this.http.post<{ token: { access_token: string }, user: any }>(this.loginUrl, payload);
   }
 
   
@@ -48,5 +48,10 @@ export class CommonService {
 
   getPostById(id: string): Observable<Post> {
     return this.http.get<Post>(`${this.apiUrl}/${id}`);
+  }
+
+  addComment(postId: string, comment: any): Observable<Post> {
+    const url = `${this.apiUrl}/${postId}/comment`;
+    return this.http.patch<Post>(url, comment);
   }
 }

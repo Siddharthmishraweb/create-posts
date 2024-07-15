@@ -210,3 +210,135 @@
   // border-radius: 10px;
   // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+
+.card {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  .user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .user-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+
+  .content {
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .image-carousel {
+    margin-bottom: 10px;
+
+    .image-slide {
+      text-align: center;
+
+      .post-image {
+        max-width: 100%;
+        border-radius: 8px;
+      }
+    }
+
+    .image-thumbnails {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+
+      .thumbnail {
+        cursor: pointer;
+        margin-right: 5px;
+        border: 1px solid #ccc;
+        padding: 2px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        &.active {
+          border-color: rgb(8, 102, 255);
+        }
+      }
+    }
+  }
+
+  .card-body {
+    margin-top: 10px;
+
+    .likes, .comments {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .comments-section {
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+
+    .comments-list {
+      margin-bottom: 10px;
+
+      .comment {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .user-image {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    .comment-form {
+      .form-group {
+        margin-bottom: 0;
+      }
+
+      input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+      }
+
+      button[type="submit"] {
+        border-radius: 20px;
+        padding: 6px 12px;
+        margin-left: 10px;
+        background-color: rgb(8, 102, 255);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #0069d9;
+        }
+      }
+    }
+  }
+}
