@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../common.service';
 import { Observable } from 'rxjs';
-import { Post } from '../post'; 
+import { Post } from '../post';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
@@ -31,12 +31,9 @@ export class DashboardComponent implements OnInit {
 
   sanitizePostImages() {
     this.posts.forEach((post: any) => {
-      console.warn("post::: ", post);
       post.user = post.user || {};
-      // post.user.image = this.sanitizeUrl(post.user.profilePic || 'assets/default-user-image.png');
-      // post.user.pimage = post.user.profilePic;
       post.userImages = this.sanitizer.bypassSecurityTrustUrl(post?.user?.profilePic);
-      // console.log("post.user.image:::   ", post.user.image)
+      post.selectedImageIndex = 0;
       post.comments.forEach((comment: any) => {
         comment.user.image = this.sanitizeUrl(comment.user?.profilePic || 'assets/default-user-image.png');
       });
@@ -48,17 +45,21 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleComments(post: any) {
-    post.showComments = !post.showComments; // Toggle comments visibility
+    post.showComments = !post.showComments;
   }
 
   addComment(post: any) {
     if (this.newComment.trim() !== '') {
-      post.comments.push({
-        user: 'USER_ID',
+      const newComment = {
+        user: JSON.parse(localStorage.getItem("user") || ""),
         comment: this.newComment,
         createdAt: new Date().toISOString()
+      };
+
+      this.postService.addComment(post._id, newComment).subscribe((updatedPost: Post) => {
+        post.comments = updatedPost.comments;
+        this.newComment = '';
       });
-      this.newComment = '';
     }
   }
 
@@ -81,19 +82,13 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/post', postId]);
   }
 
-  // swapImage(post: any, image: string): void {
-  //   const mainImageIndex = post.images.indexOf(post.mainImage);
-  //   const newMainImageIndex = post.images.indexOf(image);
+  selectImage(post: any, index: number) {
+    post.selectedImageIndex = index;
+  }
 
-  //   post.mainImage = image;
-  //   post.images[newMainImageIndex] = post.images[mainImageIndex];
-  //   post.images[mainImageIndex] = image;
-  // }
   swapImage(post: any): void {
-    // Swap mainImage and sideImage
     const temp = post.mainImage;
     post.mainImage = post.sideImage;
     post.sideImage = temp;
   }
-  
 }

@@ -1,0 +1,272 @@
+// .post-details {
+//     width: 80%;
+//     margin: 0 auto;
+  
+//     .header {
+//       display: flex;
+//       align-items: center;
+//       margin-bottom: 16px;
+  
+//       .user-image {
+//         width: 50px;
+//         height: 50px;
+//         border-radius: 50%;
+//         margin-right: 16px;
+//       }
+  
+//       .user-info {
+//         h2 {
+//           margin: 0;
+//           font-size: 1.5rem;
+//         }
+  
+//         p {
+//           margin: 4px 0 0;
+//           color: #666;
+//           font-size: 0.9rem;
+//         }
+//       }
+//     }
+  
+//     .content {
+//       p {
+//         margin-bottom: 16px;
+//         line-height: 1.6;
+//       }
+  
+//       .image-carousel {
+//         display: flex;
+//         justify-content: space-between;
+//         margin-bottom: 16px;
+  
+//         .post-image {
+//           width: 100px;
+//           height: 100px;
+//           object-fit: cover;
+//           border-radius: 8px;
+//         }
+//       }
+//     }
+  
+//     .interactions {
+//       display: flex;
+//       align-items: center;
+  
+//       .likes {
+//         display: flex;
+//         align-items: center;
+//         margin-right: 24px;
+  
+//         svg {
+//           margin-right: 8px;
+//           color: rgb(8, 102, 255); /* Blue color for liked */
+//         }
+  
+//         span {
+//           font-weight: bold;
+//         }
+//       }
+//     }
+//   }
+
+
+.post-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.5s ease-in-out;
+
+    .user-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 15px;
+      border: 2px solid #ddd;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+        border-color: #007bff;
+      }
+    }
+
+    .user-info {
+      h2 {
+        margin: 0;
+        font-size: 1.5em;
+        color: #333;
+      }
+
+      p {
+        margin: 5px 0 0;
+        color: #777;
+      }
+    }
+  }
+
+  .content {
+    p {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .image-carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      animation: fadeInUp 0.5s ease-in-out;
+
+      .image-slide {
+        min-width: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+    }
+  }
+
+  .interactions {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    animation: fadeIn 1.2s ease-in-out;
+
+    .likes {
+      display: flex;
+      align-items: center;
+      color: #007bff;
+      font-size: 1.2em;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.image-carousel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.thumbnail {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail.active {
+  transform: scale(1.1);
+  border: 2px solid #007bff;
+  border-radius: 5px;
+}
+
+.thumbnail-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.image-slide {
+  max-width: 80%;
+  margin: auto;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.post-image {
+  animation: fadeIn 0.5s ease;
+}
