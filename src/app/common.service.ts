@@ -9,8 +9,9 @@ import { Post } from './post';
 })
 export class CommonService {
 
-  private apiUrl = 'http://localhost:3000/posts';
-  private loginUrl = 'http://localhost:3000/auth/google-login';
+  private apiUrl = 'http://13.60.43.183:3000/posts';
+  private loginUrl = 'http://13.60.43.183:3000/auth/google-login';
+  
   private getAccessToken(): string | null {
     return typeof localStorage !== 'undefined' ? localStorage.getItem('access_token') : null;
   }
