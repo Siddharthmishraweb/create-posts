@@ -48,7 +48,7 @@
   overflow-x: auto;
   margin-bottom: 10px;
   position: relative;
-  height: auto; /* Adjust as needed */
+  height: auto;
 }
 
 .main-image {
@@ -60,7 +60,7 @@
 
 .side-image {
   flex: 1;
-  max-width: 200px; /* Adjust as needed */
+  max-width: 200px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -71,11 +71,6 @@
   object-fit: cover;
   border-radius: 8px;
   transition: transform 0.3s ease;
-}
-
-.image-slide:hover .post-image,
-.post-image:hover {
-  // transform: scale(1.05);
 }
 
 .card-body {
@@ -123,16 +118,6 @@
   display: flex;
   gap: 10px;
 }
-
-
-
-
-
-
-
-
-
-
 
 .image-carousel {
   display: flex;

@@ -4,7 +4,6 @@ import { SocialAuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvid
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { CommonService } from './common.service';
 
-// Declare the google object globally
 declare const google: any;
 
 @Component({
@@ -113,15 +112,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // async onLoginSuccess(user: SocialUser): Promise<void> {
-  //   console.log("user::: ", user);
-  //   const newWalaUser = {email: user.email, name: user.firstName + user.lastName, profilePic: user.photoUrl};
-  //   const newUser = await this.commonService.loginWithGoogle(newWalaUser);
-  //   console.log("newUser:: ", newUser);
-  //   localStorage.setItem('user', JSON.stringify(this.user));
-  //   localStorage.setItem('access_token', user.idToken);
-  // }
-
   private onLoginSuccess(user: SocialUser): void {
     const loginPayload = {
       idToken: user.idToken,
@@ -135,7 +125,6 @@ export class AppComponent implements OnInit {
     };
 
     this.commonService.loginWithGoogle(loginPayload).subscribe(response => {
-      console.log("response===== ", response);
       if (response?.token?.access_token) {
         localStorage.setItem('access_token', response.token.access_token);
       }
@@ -163,12 +152,10 @@ export class AppComponent implements OnInit {
     return null;
   }
 
-  // Define these methods to avoid errors in template
   onFacebookLoginClick(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).catch(error => console.error(error));
   }
 
   onPostCreated(): void {
-    // Handle post creation
   }
 }

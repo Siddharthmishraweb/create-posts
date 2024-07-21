@@ -1,87 +1,86 @@
-// post.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import { Post } from './post'; 
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { catchError, Observable, throwError } from "rxjs";
+import { Post } from "./post";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CommonService {
+  private baseUrl = "https://blue-lemons-clap.loca.lt";
+    // private baseUrl = "http://localhost:3000";
 
-  private apiUrl = 'https://blue-lemons-clap.loca.lt/posts';
-  private loginUrl = 'https://blue-lemons-clap.loca.lt/auth/google-login';
-  
+
   private getAccessToken(): string | null {
-    return typeof localStorage !== 'undefined' ? localStorage.getItem('access_token') : null;
+    return typeof localStorage !== "undefined"
+      ? localStorage.getItem("access_token")
+      : null;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getPosts(): Observable<Post[]> {
-    console.log("afghh");
-    return this.http.get<Post[]>(this.apiUrl);
+    return this.http.get<Post[]>(`${this.baseUrl}/posts`);
   }
 
-  // loginWithGoogle(payload: any): Observable<{ token: { access_token: string }, user: any }>{
-  //   console.log("payload:: ",payload);
-  //   return this.http.post<{ token: { access_token: string }, user: any }>(this.loginUrl, payload);
-  // }
-
-  loginWithGoogle(payload: any): Observable<{ token: { access_token: string }, user: any }> {
+  loginWithGoogle(
+    payload: any
+  ): Observable<{ token: { access_token: string }; user: any }> {
     console.log("Payload being sent to login API: ", payload);
-    return this.http.post<{ token: { access_token: string }, user: any }>(this.loginUrl, payload)
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http
+      .post<{ token: { access_token: string }; user: any }>(
+        `${this.baseUrl}/auth/google-fb-login`,
+        payload
+      )
+      .pipe(catchError(this.handleError));
   }
   private handleError(error: any) {
-    console.error('An error occurred:', error); // for demo purposes only
+    console.error("An error occurred:", error);
     return throwError(error);
   }
   createPost(payload: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("access_token")}`,
     });
-    return this.http.post<any>(`${this.apiUrl}`, payload, { headers });
+    return this.http.post<any>(`${this.baseUrl}/posts`, payload, { headers });
   }
-
-  // likePost(postId: string): Observable<void> {
-  //   return this.http.patch<void>(`${this.apiUrl}/${postId}/like`, {});
-  // }
-
-  // unlikePost(postId: string): Observable<void> {
-  //   return this.http.patch<void>(`${this.apiUrl}/${postId}/unlike`, {});
-  // }
 
   likePost(postId: string): Observable<void> {
     const token = this.getAccessToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
 
-    return this.http.patch<void>(`${this.apiUrl}/${postId}/like`, {}, { headers });
+    return this.http.patch<void>(
+      `${this.baseUrl}/posts/${postId}/like`,
+      {},
+      { headers }
+    );
   }
 
   unlikePost(postId: string): Observable<void> {
     const token = this.getAccessToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
 
-    return this.http.patch<void>(`${this.apiUrl}/${postId}/unlike`, {}, { headers });
+    return this.http.patch<void>(
+      `${this.baseUrl}/posts/${postId}/unlike`,
+      {},
+      { headers }
+    );
   }
   getPostById(id: string): Observable<Post> {
-    return this.http.get<Post>(`${this.apiUrl}/${id}`);
+    return this.http.get<Post>(`${this.baseUrl}/posts/${id}`);
   }
 
   addComment(postId: string, comment: any): Observable<Post> {
     const token = this.getAccessToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
-    const url = `${this.apiUrl}/${postId}/comment`;
+    const url = `${this.baseUrl}/posts/${postId}/comment`;
     return this.http.patch<Post>(url, comment, { headers });
   }
 }

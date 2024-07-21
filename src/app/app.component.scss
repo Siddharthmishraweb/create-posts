@@ -1,115 +1,117 @@
 .navbar {
-    background-color: #f8f9fa;
-  }
-  
-  .user-image {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-  
-  .create-post {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .create-post:hover {
-    background-color: #0056b3;
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .user-image, .nav-link, .create-post {
-    animation: fadeIn 1s;
-  }
-  
+  background-color: #f8f9fa;
+}
 
+.user-image {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
 
-  /* General styles */
+.nav-link {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.create-post {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.create-post:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.user-image,
+.nav-link,
+.create-post {
+  animation: fadeIn 1s;
+}
+
 .navbar {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
+}
+
+.user-image {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn-close {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+
+.create-post {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.create-post:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .user-image {
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
+
+  to {
+    opacity: 1;
   }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-  }
-  
-  .btn {
-    cursor: pointer;
-  }
-  
-  .btn-close {
-    outline: none;
-    border: none;
-    background: none;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Create Post button */
-  .create-post {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    transition: background-color 0.3s ease;
-  }
-  
-  .create-post:hover {
-    background-color: #0056b3;
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .user-image, .nav-link, .create-post {
-    animation: fadeIn 1s;
-  }
-  
+}
+
+.user-image,
+.nav-link,
+.create-post {
+  animation: fadeIn 1s;
+}
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -217,13 +219,13 @@ body {
 
 
 .navbar {
-  background-color: #007bff; /* Blue background */
-  padding: 10px 0; /* Add padding to the navbar */
+  background-color: #007bff;
+  padding: 10px 0;
 }
 
 .navbar-brand {
-  color: #fff; /* White text color */
-  font-size: 1.5rem; /* Larger font size */
+  color: #fff;
+  font-size: 1.5rem;
 }
 
 .navbar-right {
@@ -232,13 +234,13 @@ body {
 }
 
 .nav-link {
-  color: #fff; /* White text color */
-  margin-right: 10px; /* Add margin between buttons */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: #fff;
+  margin-right: 10px;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #e9ecef; /* Lighter color on hover */
+  color: #e9ecef;
 }
 
 .user-info {
@@ -247,38 +249,38 @@ body {
 }
 
 .user-image {
-  width: 40px; /* Adjust image size */
+  width: 40px;
   height: 40px;
-  border-radius: 50%; /* Round image */
-  margin-right: 10px; /* Add margin */
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .user-name {
-  font-weight: bold; /* Bold user name */
+  font-weight: bold;
 }
 
 .create-post-btn {
-  background-color: #28a745; /* Green button color */
+  background-color: #28a745;
 }
 
 .create-post-btn:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #218838;
 }
 
 .login-btn {
-  background-color: #6c757d; /* Gray button color */
+  background-color: #6c757d;
 }
 
 .login-btn:hover {
-  background-color: #5a6268; /* Darker gray on hover */
+  background-color: #5a6268;
 }
 
 .logout-btn {
-  background-color: #dc3545; /* Red button color */
+  background-color: #dc3545;
 }
 
 .logout-btn:hover {
-  background-color: #c82333; /* Darker red on hover */
+  background-color: #c82333;
 }
 
 .btn.login-btn {
@@ -287,6 +289,7 @@ body {
   cursor: pointer;
 }
 
-.btn.logout-btn, .btn.create-post-btn {
+.btn.logout-btn,
+.btn.create-post-btn {
   cursor: pointer;
 }
