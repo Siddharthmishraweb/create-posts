@@ -3,7 +3,13 @@
     <div class="container">
       <a class="navbar-brand" href="#">Blogify</a>
       <div class="navbar-right">
-        <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onLoginButtonClick()">Login with Google</button>
+        <!-- <div #googleSignInButton></div> -->
+        <!-- <div #googleSignInButton></div> -->
+
+        <div *ngIf="!loggedIn">
+          <asl-google-signin-button (signInStatus)="signInWithGoogle()"></asl-google-signin-button>
+        </div>
+
         <button *ngIf="!loggedIn" class="nav-link btn login-btn" (click)="onFacebookLoginClick()">Login with Facebook</button>
         <div *ngIf="loggedIn" class="user-info">
           <img [src]="sanitizedPhotoUrl" alt="User Image" class="user-image">
@@ -16,9 +22,6 @@
   </nav>
 </div>
 
-
 <app-create-post #createPostComponent (postCreated)="onPostCreated()"></app-create-post>
 
 <router-outlet></router-outlet>
-
-

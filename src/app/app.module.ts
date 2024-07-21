@@ -12,6 +12,8 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { CommonModule } from '@angular/common';
+import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
   providers: [
     provideClientHydration(),
@@ -53,3 +56,4 @@ import { CommonModule } from '@angular/common';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
