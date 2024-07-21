@@ -9,8 +9,8 @@ import { Post } from './post';
 })
 export class CommonService {
 
-  private apiUrl = 'https://olive-spies-suffer.loca.lt/posts';
-  private loginUrl = 'https://olive-spies-suffer.loca.lt/auth/google-login';
+  private apiUrl = 'https://blue-lemons-clap.loca.lt/posts';
+  private loginUrl = 'https://blue-lemons-clap.loca.lt/auth/google-login';
   
   private getAccessToken(): string | null {
     return typeof localStorage !== 'undefined' ? localStorage.getItem('access_token') : null;
